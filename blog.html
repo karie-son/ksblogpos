@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Karieson Blog</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #ffe6f0; /* Light pink background */
+    color: #333;
+  }
+  header {
+    background: #007BFF;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+  }
+  header h1 { margin: 0; }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  section { padding: 20px; }
+  .btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .btn:hover { background-color: #0056b3; }
+  /* Popup styling */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .popup-content {
+    background: white;
+    padding: 20px;
+    margin: 10% auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .close {
+    position: absolute;
+    top: 8px; right: 12px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  /* Blog styling */
+  .blog-post {
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .read-more-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  .read-more-btn:hover { background-color: #0056b3; }
+  /* Contact form */
+  form input, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  /* Footer */
+  footer {
+    background: lightgreen;
+    padding: 15px;
+    text-align: center;
+     border-top: 1px solid white;
+  }
+  /* Floating buttons */
+  .floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+  }
+  .floating-buttons a {
+    background: #25d366;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  }
+  .call-btn { background: #007BFF; }
+</style>
+</head>
+<body>
+
+<header>
+	
+  <h1>Welcome to My Blog</h1>
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- About Me -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>Hi, I’m Karieson, passionate about technology, blogging, and sharing useful insights...</p>
+  <button class="btn" onclick="openPopup('aboutPopup')">Learn More</button>
+  <button class="btn" onclick="openPopup('subscribePopup')">Subscribe</button>
+</section>
+
+<!-- About Me Popup -->
+<div id="aboutPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('aboutPopup')">&times;</span>
+    <h2>About This Blog</h2>
+    <p>This blog is dedicated to exploring technology trends, practical tips, and thought-provoking discussions that help readers stay ahead in the digital world.</p>
+  </div>
+</div>
+
+<!-- Subscribe Popup -->
+<div id="subscribePopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('subscribePopup')">&times;</span>
+    <h2>Subscribe to Our Newsletter</h2>
+    <form action="https://formspree.io/f/mqaljnkg" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <button class="btn" type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!-- Blog Section -->
+<section id="blog">
+  <h2>Latest Blog Posts</h2>
+<article>
+	<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert("Action disabled: Right-click is not allowed.");
+  });
+
+  // Disable text selection and copy-paste
+  document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+  });
+  document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    alert("Action disabled: Copy is not allowed.");
+  });
+  document.addEventListener('cut', function(e) {
+    e.preventDefault();
+    alert("Action disabled: Cut is not allowed.");
+  });
+  document.addEventListener('paste', function(e) {
+    e.preventDefault();
+    alert("Action disabled: Paste is not allowed.");
+  });
+
+  // Disable keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    // List of key combinations to block
+    if (
+      e.ctrlKey || e.metaKey || e.key === "F12" // Ctrl or Cmd pressed, or F12
+    ) {
+      // Specific blocked shortcuts
+      const blockedKeys = ['a','c','v','x','u','s','p','A','C','V','X','U','S','P'];
+      if (blockedKeys.includes(e.key)) {
+        e.preventDefault();
+        alert("Keyboard shortcut disabled.");
+      }
+      // Block F12 separately
+      if (e.key === "F12") {
+        e.preventDefault();
+        alert("F12 disabled.");
+      }
+    }
+  });
+</script>
+
+<h1> Technology Research on AI</h1>
+  <h2>Table of Contents</h2>
+
+  <div class="toc-section">
+    <div class="toc-title">Introduction</div>
+    <div class="toc-content">
+      <p>Artificial Intelligence (AI) is no longer just a futuristic concept—it is becoming an integral part of our daily lives...</p>
+    </div>
+  </div>
+
+  <div class="toc-section">
+    <div class="toc-title">AI in Personal Devices</div>
+    <div class="toc-content">
+      <ul>
+        <li>Smartphones: AI powers voice assistants, predictive text, and personalized recommendations.</li>
+        <li>Wearables: Smartwatches track health metrics and suggest fitness plans.</li>
+        <li>Laptops & Computers: AI enhances performance and battery life.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="toc-section">
+    <div class="toc-title">AI in Home Automation</div>
+    <div class="toc-content">
+      <ul>
+        <li>Smart Home Devices learn user behavior and optimize energy usage.</li>
+        <li>Security Systems detect unusual activity and alert homeowners.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="toc-section">
+    <div class="toc-title">Ethical and Security Considerations</div>
+    <div class="toc-content">
+      <ul>
+        <li>Data Privacy: Large amounts of personal data raise privacy concerns.</li>
+        <li>Bias and Fairness: Algorithms can unintentionally favor certain groups.</li>
+        <li>Security Risks: AI systems can be exploited by cyber attackers.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- Styles for Collapsible TOC -->
+<style>
+  .toc-section {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .toc-title {
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .toc-content {
+    display: none;
+    padding: 10px;
+    background-color: #f0f4ff;
+  }
+</style>
+
+<!-- Script to toggle visibility -->
+<script>
+  document.querySelectorAll('.toc-title').forEach(title => {
+    title.addEventListener('click', () => {
+      const content = title.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+</script>
+
+<article class="blog-post">
+  <h1>Dustwalkers: The Road to Somalia</h1>
+  <p><em>By Karieson</em></p>
+  <p><strong>Genre:</strong> Adventure / Magical Realism / African Folklore</p>
+
+  <hr>
+
+  <h2>Dedication</h2>
+  <p>To my grandmother—<br>
+  who raised me with love, prayers, and quiet strength.<br>
+  Your faith still walks beside me.</p>
+
+  <p>To my friends—Farhan, Yasin, Omar—<br>
+  we took the first steps together.<br>
+  This story will always carry your footprints.</p>
+
+  <p>And to anyone who has ever walked toward something uncertain,<br>
+  not knowing what tomorrow holds—<br>
+  this is for you.</p>
+
+  <hr>
+
+  <h2>Author’s Note</h2>
+  <p>This is a work of fiction—but it was born from truths.
+  It began in a town like Isiolo, where early morning prayers mingled with quiet conversations. 
+  The characters in this story didn’t know exactly where they were going—only that they had to keep moving.</p>
+
+  <p>Somalia, for them, wasn’t just a place on a map.
+  It was a dream. A chance. Maybe even a kind of hope.</p>
+
+  <p>The people you’ll meet in these pages aren’t perfect. They don’t have much. 
+  But they have each other—and sometimes, that’s enough to begin.</p>
+
+  <p>This isn’t just a story about crossing borders.
+  It’s about friendship, silence, risk—and the search for a life that feels truly your own.</p>
+
+  <p>I’m not a professional storyteller. I’m just someone who’s lived close enough to the edge of this story to imagine what it might feel like—and what it might mean.  
+  May you find a piece of your own courage here.</p>
+
+  <hr>
+
+  <h2>Chapter One: The Road Began at Fajr</h2>
+  <p>The floor was cool beneath my forehead as I ended sujood. 
+  The walls of the old mosque in Isiolo were cracked with age, but the silence inside felt whole. Peaceful. 
+  It was Farhan who broke it.</p>
+
+  <p>"Bro," he whispered, nudging my arm. "We ready?"</p>
+
+  <p>The sky was still dark, stars clinging to the last of the night. 
+  We had agreed to meet here—before Fajr prayer—at the old mosque where generations had come and gone, 
+  where time felt slower and intentions clearer.</p>
+
+  <p>Since the erupt of unemployment, I had drawn a quiet plan: to go to Somalia. 
+  Not alone, but with brothers—Farhan, Yassin, and Omar. 
+  Men I trusted, whose lives, like mine, had stalled in the waiting rooms of hardship. 
+  Our bond was forged in shared frustration, but also in hope. 
+  Together, we had decided: if opportunity wouldn’t come to us, we would go in search of it.</p>
+
+  <p>The mosque air smelled of dust and old prayer mats. 
+  We offered our prayer, quietly and with hearts heavy. 
+  And then, as the first light began to rise, we stepped outside, into the stillness of dawn.</p>
+
+  <p>My thoughts were ahead of my feet. 
+  I was already on the road—far from Isiolo’s cracked pavements, beyond the familiar dust. 
+  I saw the land changing in my mind: dry plains stretching to the horizon, border towns, foreign tongues. 
+  And somewhere far ahead, Somalia—still unknown, but pulling me like a quiet promise.</p>
+
+  <p>But first, I had to tell her.</p>
+
+  <p>My grandmother’s house wasn’t far—just a short walk. Still, it felt like miles with the weight pressing down on me. 
+  I had pictured the moment: standing in her doorway, the sun on my back, her eyes soft with concern as I told her the truth—where I was going, and why.</p>
+
+  <p>But as I got closer, doubt crept in like a slow wind curling around my ankles. 
+  What if she didn’t understand? What if she cried? 
+  What if she looked at me with that quiet disappointment that said more than words ever could?</p>
+
+  <p>My steps slowed. I thought of her hands—thin, worn, trembling slightly when they held mine. 
+  I remembered the kisses I gave her the night before, the way she had closed her eyes and held me just a little longer. 
+  Did she know already, somehow?</p>
+
+  <p>I stopped at the corner of the street. Her house was just in sight. Still, I hesitated.  
+  A war had broken out inside me—between the duty to tell her and the urge to protect her from pain. 
+  Between truth and escape. Between home and something far more uncertain.</p>
+
+  <p>And in the end, I chose the road.</p>
+
+  <p>I turned away quietly, breath catching in my throat as I walked into the fading light. 
+  Dust rose around my shoes with every step. 
+  Behind me, her house slowly disappeared from view.</p>
+
+  <p>Maybe one day, I would return—with stories, with reasons, with the kind of strength she always believed I had.  
+  But that day, I chose silence—and the long road ahead.</p>
+
+  <p>We didn’t tell our families everything. 
+  Farhan said we were “going north for a few days,” but not how far. 
+  Omar left a note under his pillow. 
+  Yassin said nothing at all—he just prayed, kissed the Qur’an, and followed.</p>
+
+  <p><em>That was 2018. The year everything changed.</em></p>
+</article>
+<!-- Purchase Section -->
+<div class="purchase-section" style="margin-top: 30px; padding: 20px; border-top: 1px solid #ccc;">
+  <h3>Get the Full Novel</h3>
+  <p>Purchase the complete novel in your preferred format:</p>
+
+  <!-- PayPal Buttons -->
+  <div style="margin-bottom: 15px;">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <!-- Replace with your PayPal email and item details -->
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="sonofkarie@gmail.com">
+      <input type="hidden" name="item_name" value="Complete Novel - MS Word">
+      <input type="hidden" name="amount" value="5.00"> <!-- Replace with your price -->
+      <input type="hidden" name="currency_code" value="USD">
+      <!-- Successful purchase redirect to Google Drive MS Word link -->
+      <input type="hidden" name="return" value="https://bit.ly/45HpJUN">
+      <input type="hidden" name="rm" value="2">
+      <input type="submit" value="Buy Full Novel (MS Word) via PayPal" style="padding: 10px 20px; background-color:#0070ba; color:white; border:none; cursor:pointer;">
+    </form>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="sonofkarie@gmail.com">
+      <input type="hidden" name="item_name" value="Complete Novel - PDF">
+      <input type="hidden" name="amount" value="5.00"> <!-- Replace with your price -->
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="return" value="http://bit.ly/3Uzu9bf">
+      <input type="hidden" name="rm" value="2">
+      <input type="submit" value="Buy Full Novel (PDF) via PayPal" style="padding: 10px 20px; background-color:#0070ba; color:white; border:none; cursor:pointer;">
+    </form>
+  </div>
+
+  <!-- Payhip Button -->
+  <div>
+    <a href="https://payhip.com/b/Oj2HJ" target="_blank" style="padding: 10px 20px; background-color:#ff5a5f; color:white; text-decoration:none; display:inline-block;">Buy Full Novel via Payhip</a>
+  </div>
+</div>
+
+	
+	<div class="blog-post">
+  <h1>Impact of Youth Unemployment in Kenya</h1>
+<p><small>August 15, 2025</small></p>
+  <h2>1. Economic Impacts</h2>
+  <ul>
+    <li><strong>Slower economic growth</strong> – fewer people in productive jobs means less output and reduced national income.</li>
+    <li><strong>Loss of tax revenue</strong> – unemployed youth aren’t contributing income taxes, yet they still need public services.</li>
+    <li><strong>Increased dependency</strong> – more reliance on parents, relatives, or government support puts pressure on household finances.</li>
+  </ul>
+
+  <h2>2. Social Impacts</h2>
+  <ul>
+    <li><strong>Higher crime rates</strong> – lack of income opportunities can push some youth toward theft, fraud, and other illegal activities.</li>
+    <li><strong>Political instability</strong> – unemployed youth are more vulnerable to political manipulation, protests, and unrest.</li>
+    <li><strong>Social exclusion</strong> – jobless youth may feel disconnected from society, leading to frustration and hopelessness.</li>
+  </ul>
+
+  <h2>3. Personal Impacts</h2>
+  <ul>
+    <li><strong>Mental health challenges</strong> – unemployment is linked to depression, anxiety, and low self-esteem.</li>
+    <li><strong>Delayed life goals</strong> – difficulty affording marriage, starting a family, or building a home.</li>
+    <li><strong>Skill erosion</strong> – the longer someone is unemployed, the more their skills become outdated.</li>
+  </ul>
+
+  <h2>4. National Development Impacts</h2>
+  <ul>
+    <li><strong>Wasted human potential</strong> – Kenya loses out on innovation and productivity that energetic, educated youth could offer.</li>
+    <li><strong>Widening inequality</strong> – unemployment deepens the gap between rich and poor, especially in urban slums and rural areas.</li>
+  </ul>
+  <button class="read-more-btn" onclick="togglePost(this)">Read More</button>
+  </div>
+  
+<div class="blog-post">
+  <h1>Ways Government Could Improve the Status of Youth Unemployment</h1>
+  <p><small>August 15, 2025</small></p>
+  <h2>1. Education & Skills Alignment</h2>
+  <ul>
+  	<div class="full-post" style="display: none;">
+    <li>Revamp curricula to match industry needs – focus on technical, digital, and entrepreneurial skills.</li>
+    <li>Expand TVET institutions and link them directly with industries for apprenticeships.</li>
+    <li>Encourage universities to collaborate with companies on research and innovation.</li>
+  </ul>
+
+  <h2>2. Support for Entrepreneurship</h2>
+  <ul>
+    <li>Provide youth-specific startup grants and low-interest loans.</li>
+    <li>Simplify business registration and licensing processes.</li>
+    <li>Create mentorship programs pairing young entrepreneurs with experienced business leaders.</li>
+  </ul>
+
+  <h2>3. Expand Digital Economy Opportunities</h2>
+  <ul>
+    <li>Invest in affordable internet access across rural areas.</li>
+    <li>Partner with global gig platforms to train and recruit Kenyan youth.</li>
+    <li>Support local content creation and monetization.</li>
+  </ul>
+   
+  <h2>4. Infrastructure & Regional Investment</h2>
+  <ul>
+    <li>Develop special economic zones outside Nairobi to attract investments.</li>
+    <li>Establish agro-processing hubs to create rural jobs.</li>
+    <li>Improve transport networks to connect remote areas to markets.</li>
+  </ul>
+
+  <h2>5. Private Sector Incentives</h2>
+  <ul>
+    <li>Offer tax breaks to companies hiring and training young workers.</li>
+    <li>Promote internship-to-employment pipelines.</li>
+    <li>Support industries with high youth employment potential – agriculture, ICT, tourism.</li>
+  </ul>
+
+  <h2>6. Public Works & Green Jobs</h2>
+  <ul>
+    <li>Expand public works programs for environmental restoration and infrastructure repair.</li>
+    <li>Invest in green energy projects with youth hiring quotas.</li>
+  </ul>
+
+  <h2>7. Career Guidance & Job Matching</h2>
+  <ul>
+    <li>Create a national job portal linked to schools and universities.</li>
+    <li>Offer career counselling from secondary school onward.</li>
+ <button class="read-more-btn" onclick="togglePost(this)">Read More</button>
+  </div>
+  
+  
+  <div class="blog-post">
+    <h3>The Rise of Artificial Intelligence</h3>
+    <p><small>August 15, 2025</small></p>
+    <p>Artificial Intelligence (AI) is no longer just a futuristic concept — it’s here, changing the way we live, work, and think...</p>
+    <div class="full-post" style="display: none;">
+      <p>From smart voice assistants like Alexa and Siri to complex algorithms that can predict diseases before symptoms appear, AI is becoming a part of our everyday lives.</p>
+    </div>
+    <button class="read-more-btn" onclick="togglePost(this)">Read More</button>
+  </div>
+
+  <div class="blog-post">
+    <h3>5G: The Future of Connectivity</h3>
+    <p><small>August 15, 2025</small></p>
+    <p>5G is the latest leap in mobile network technology, promising speeds up to 100 times faster than 4G...</p>
+    <div class="full-post" style="display: none;">
+      <p>It’s not just about faster downloads — 5G opens the door to new possibilities like real-time multiplayer gaming with no lag, ultra-clear video calls, and instant streaming.</p>
+    </div>
+    <button class="read-more-btn" onclick="togglePost(this)">Read More</button>
+  </div>
+
+</section>
+
+<!-- Contact Form -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form action="https://formspree.io/f/mqaljnkg" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+    <button class="btn" type="submit">Send</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Karieson Blog | Privacy Policy</p>
+</footer>
+
+<!-- Floating Call & WhatsApp Buttons -->
+<div class="floating-buttons">
+  <a href="tel:+254728428431" class="call-btn">&#128222;</a>
+  <a href="https://wa.me/254728428431" target="_blank">&#128241;</a>
+</div>
+
+<script>
+function openPopup(id) {
+  document.getElementById(id).style.display = 'block';
+}
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
+}
+function togglePost(button) {
+  const fullPost = button.previousElementSibling;
+  if (fullPost.style.display === "none") {
+    fullPost.style.display = "block";
+    button.textContent = "Show Less";
+  } else {
+    fullPost.style.display = "none";
+    button.textContent = "Read More";
+  }
+}
+</script>
+
+</body>
+</html>
