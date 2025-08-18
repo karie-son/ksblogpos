@@ -153,6 +153,149 @@
     </form>
   </div>
 </div>
+	<!-- Publication Icon -->
+<button class="pub-btn" onclick="openPopup('pubPopup')">📚</button>
+
+<!-- Publication Popup -->
+<div id="pubPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('pubPopup')">&times;</span>
+    <h2>Publications</h2>
+    
+    <!-- Research Section -->
+    <button class="folder-btn" onclick="toggleFolder('researchList')">Research</button>
+    <ul id="researchList" class="folder-list">
+      <li><a href="publications/research/HR_research_project.docx" download>Download HR Research Project</a></li>
+      <li><a href="publications/research/Tech_Study_2025.pdf" download>Download Tech Study 2025</a></li>
+    </ul>
+    
+    <!-- Novels Section -->
+    <button class="folder-btn" onclick="toggleFolder('novelsList')">Novels</button>
+    <ul id="novelsList" class="folder-list">
+      <li><a href="publications/novels/my_novel.docx" download>Download My Novel</a></li>
+    </ul>
+    
+    <!-- Past Papers Section -->
+    <button class="folder-btn" onclick="toggleFolder('pastPapersList')">Past Papers</button>
+    <ul id="pastPapersList" class="folder-list">
+      <li><a href="publications/past_papers/sample_exam.pdf" download>Download Sample Exam</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<style>
+/* Publication Button */
+.pub-btn {
+  background: linear-gradient(45deg, #007BFF, #FF69B4);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+/* Popup */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  margin: 10% auto;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Folder buttons */
+.folder-btn {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 8px 0;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.folder-btn:hover {
+  background-color: #FF69B4;
+}
+
+/* Folder list hidden by default */
+.folder-list {
+  list-style: none;
+  padding: 0;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.folder-list li {
+  margin: 8px 0;
+}
+
+.folder-list li a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.folder-list li a:hover {
+  color: #FF69B4;
+}
+</style>
+
+<script>
+function openPopup(id) {
+  document.getElementById(id).style.display = 'block';
+}
+
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// Close popup if click outside
+window.onclick = function(event) {
+  const popup = document.getElementById('pubPopup');
+  if (event.target == popup) {
+    popup.style.display = "none";
+  }
+}
+
+// Toggle folder list
+function toggleFolder(id) {
+  const list = document.getElementById(id);
+  list.style.display = (list.style.display === 'block') ? 'none' : 'block';
+}
+</script>
 
 <!-- Blog Section -->
 <section id="blog">
@@ -571,3 +714,4 @@ function togglePost(button) {
 </body>
 
 </html>
+
